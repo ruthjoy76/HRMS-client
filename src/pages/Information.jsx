@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import PersonList from "../components/PersonList";
-import PersonForm from "../components/PersonForm";
+import EmployeeForm from "../components/EmployeeForm";
+import EmployeeList from "../components/EmployeeList";
 
-function Phonebook({ user, persons, setPersons, setUser }) {
+function Information({ user, employees, setEmployees, setUser }) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -11,16 +11,16 @@ function Phonebook({ user, persons, setPersons, setUser }) {
   }, [user, navigate]);
 
   const handleLogout = () => {
-    window.localStorage.removeItem("loggedPhonebookUser");
+    window.localStorage.removeItem("loggedInformationUser");
     setUser(null);
   };
 
   return (
     <div className="flex flex-col gap-2">
-      <h1 className="text-4xl mb-4 text-center font-bold">Phonebook</h1>
+      <h1 className="text-4xl mb-4 text-center font-bold">Employee</h1>
 
-      <PersonList persons={persons} setPersons={setPersons} />
-      <PersonForm persons={persons} setPersons={setPersons} />
+      <EmployeeList employees={employees} setEmployees={setEmployees} />
+      <EmployeeForm employees={employees} setEmployees={setEmployees} />
 
       <p className="flex justify-between items-center text-sm">
         {user?.name} is logged in{" "}
@@ -35,4 +35,4 @@ function Phonebook({ user, persons, setPersons, setUser }) {
   );
 }
 
-export default Phonebook;
+export default Information;

@@ -1,24 +1,24 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import personService from "./services/personService";
-import Phonebook from "./pages/Phonebook";
+import employeeService from "./services/employeeService";
+import Information from "./pages/Information";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 
 function App() {
-  const [persons, setPersons] = useState([]);
+  const [employees, setEmployees] = useState([]);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem("loggedPhonebookUser");
+    const loggedUserJSON = window.localStorage.getItem("loggedInformationUser");
 
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
       setUser(user);
-      personService.setToken(user.token);
+      employeeService.setToken(user.token);
     }
   }, []);
 
@@ -28,10 +28,10 @@ function App() {
         <Route
           path="/"
           element={
-            <Phonebook
+            <Information
               user={user}
-              persons={persons}
-              setPersons={setPersons}
+              employees={employees}
+              setEmployees={setEmployees}
               setUser={setUser}
             />
           }

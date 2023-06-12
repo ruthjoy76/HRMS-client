@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import loginService from "../services/loginService";
-import personService from "../services/personService";
+import employeeService from "../services/employeeService"
 
 function LoginForm({
   user,
@@ -23,8 +23,8 @@ function LoginForm({
     loginService
       .login({ username, password })
       .then((res) => {
-        window.localStorage.setItem("loggedPhonebookUser", JSON.stringify(res));
-        personService.setToken(res.token);
+        window.localStorage.setItem("loggedInformationUser", JSON.stringify(res));
+        employeeService.setToken(res.token);
         setUser(res);
         setUsername("");
         setPassword("");
@@ -68,7 +68,7 @@ function LoginForm({
       <p className="text-center">
         Don't have an account?{" "}
         <Link to="/register" className="text-blue-500">
-          Register here.
+          Sign Up here.
         </Link>
       </p>
     </div>

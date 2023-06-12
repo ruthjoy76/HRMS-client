@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:8080/api/persons";
+const baseUrl = "http://localhost:8080/api/employees";
 
 let token = null;
 
@@ -8,25 +8,25 @@ function setToken(newToken) {
   token = `Bearer ${newToken}`;
 }
 
-function getPersons() {
+function getEmployees() {
   return axios.get(baseUrl).then((res) => res.data);
 }
 
-function createPerson(person) {
+function createEmployee(employee) {
   const config = {
     headers: { Authorization: token },
   };
 
-  return axios.post(baseUrl, person, config).then((res) => res.data);
+  return axios.post(baseUrl, employee, config).then((res) => res.data);
 }
 
-function deletePerson(id) {
+function deleteEmployee(id) {
   return axios.delete(`${baseUrl}/${id}`).then((res) => res.status);
 }
 
 export default {
-  getPersons,
-  createPerson,
-  deletePerson,
+  getEmployees,
+  createEmployee,
+  deleteEmployee,
   setToken,
 };
